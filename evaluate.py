@@ -41,6 +41,7 @@ class YCB_evaluator:
         self.avg_rep_acc = meters()
 
         self.diameters = []
+        # self._cal_diameter() # Only run the first time! 
         self._load_diameters()
 
     def evaluate_one(self, est_pose, class_name=None, image_id="0048_001160"):
@@ -141,6 +142,7 @@ if __name__ == "__main__":
     ycb_result_path = "exp007-Result"
     print("evaluating path:", ycb_result_path)
     evaluator._load_pose_gt()    # use this line to load new pose gt
+    # evaluator.  # use when running for the first time! 
     evaluator._load_diameters()  # use this line to calculate all diameters
 
     display_interval = 200
@@ -159,5 +161,25 @@ if __name__ == "__main__":
                 results[class_name] = evaluator.get_result()
 
     print("Final results of all classes:")
+    add_list = []
+    rep_list = []
     for class_name in results.keys():
         print(class_name, results[class_name])
+        add_list.append(results[class_name]['add acc'])
+        rep_list.append(results[class_name]['REP acc'])
+    add_list = np.array(add_list)
+    rep_list = np.array(rep_list)
+    print('ADD mean')
+    print(np.mean(add_list))
+    print('REP mean')
+    print(np.mean(rep_list))
+
+
+    # save results 
+    results_path =  "data/results_original.pkl"
+    with open(results_path, 'wb') as output:
+        pickle.dump(results, output)
+    print("Final results have been saved")
+
+
+

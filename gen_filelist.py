@@ -30,8 +30,11 @@ if __name__ == '__main__':
     # ycb_video_path = '/media/data_2/YCB/data'
     # testListFile = '/media/data_2/YCB/YCB_Video_toolbox/keyframe.txt'
 
-    ycb_video_path = '/data/vision/billf/scratch/zelin/YCB/YCB_Video_Dataset/data'
-    testListFile = "/data/vision/billf/scratch/zelin/YCB/YCB_Video_Dataset/image_sets/keyframe.txt"
+    # ycb_video_path = '/home/mg640611/FFB6D/ffb6d/datasets/ycb/YCB_Video_Dataset/data'
+    
+    ycb_video_path = '/home/sk246184/0_segmentation_based/YCB_Video_Dataset/data'
+    
+    testListFile = "/home/mg640611/FFB6D/ffb6d/datasets/ycb/YCB_Video_Dataset/image_sets/keyframe.txt"
     collect_ycb_testlist(testListFile, ycb_video_path, './ycb-video-testlist.txt')
     print("Generation Done!")
 

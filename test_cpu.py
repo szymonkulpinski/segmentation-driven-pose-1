@@ -1,5 +1,5 @@
 from utils import *
-from segpose_net import SegPoseNet
+from segpose_net_cpu import SegPoseNet
 import cv2
 import numpy as np
 
@@ -24,6 +24,7 @@ def evaluate(data_cfg, weightfile, listfile, outdir, object_names, intrinsics, v
 
     for idx in range(len(imglines)):
         imgfile = imglines[idx].rstrip()
+        print(imgfile)
         img = cv2.imread(imgfile)
 
         dirname, filename = os.path.split(imgfile)
@@ -53,8 +54,8 @@ def evaluate(data_cfg, weightfile, listfile, outdir, object_names, intrinsics, v
         print('%s: Visualization in %f seconds.' % (imgfile, (vis_finish - vis_start)))
 
 if __name__ == '__main__':
-    use_gpu = True
-    # use_gpu = False
+    # use_gpu = True
+    use_gpu = False
     # #
     # dataset = 'Occluded-LINEMOD'
     # outdir = './Occluded-LINEMOD-Out'
